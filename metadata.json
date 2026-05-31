@@ -1,0 +1,6 @@
+{
+  "name": "Design Portfolio",
+  "description": "A highly-polished modern designer portfolio showcasing brand identity, digital design, editorial work, and creative direction.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
