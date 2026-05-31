@@ -1,30 +1,12 @@
 import { motion } from 'motion/react';
-import { Sparkles, Edit2, Coffee, Command, MapPin, Eye } from 'lucide-react';
+import { Sparkles, Coffee, MapPin } from 'lucide-react';
 import { PortfolioData } from '../types';
 
 interface AboutProps {
   data: PortfolioData;
-  isEditMode: boolean;
-  onUpdate: (updated: Partial<PortfolioData>) => void;
 }
 
-export default function About({ data, isEditMode, onUpdate }: AboutProps) {
-  const accentThemeClass = {
-    indigo: 'text-indigo-300 bg-white/5 border-indigo-500/20',
-    amber: 'text-amber-300 bg-white/5 border-amber-500/20',
-    emerald: 'text-emerald-300 bg-white/5 border-emerald-500/20',
-    rose: 'text-rose-300 bg-white/5 border-rose-500/20',
-    slate: 'text-white bg-white/5 border-white/10',
-  }[data.accentColor];
-
-  const highlightBorderColor = {
-    indigo: 'focus-within:border-indigo-400 border-white/10 bg-indigo-950/20',
-    amber: 'focus-within:border-amber-400 border-white/10 bg-amber-950/20',
-    emerald: 'focus-within:border-emerald-400 border-white/10 bg-emerald-950/20',
-    rose: 'focus-within:border-rose-400 border-white/10 bg-rose-950/20',
-    slate: 'focus-within:border-white border-white/10 bg-white/5',
-  }[data.accentColor];
-
+export default function About({ data }: AboutProps) {
   return (
     <section id="about-section" className="py-24 px-6 sm:px-12 lg:px-24 bg-transparent border-t border-white/5 relative overflow-hidden">
       {/* Structural Minimalist Grid Pattern */}
@@ -83,91 +65,36 @@ export default function About({ data, isEditMode, onUpdate }: AboutProps) {
 
           {/* Right Column - Body Text & Direct Editorial Narrative */}
           <div className="lg:col-span-7 space-y-10 leading-relaxed text-white/85 text-base sm:text-lg">
-            
-            {isEditMode ? (
-              <div className={`space-y-6 p-6 rounded-2xl border transition-all ${highlightBorderColor}`}>
-                <div className="text-xs font-mono uppercase text-zinc-300 flex items-center gap-1.5 pb-2 border-b border-white/10">
-                  <Edit2 className="w-3.5 h-3.5 text-pink-400" />
-                  Customize Biography Assets
+            <div className="space-y-6 text-white/80 font-light text-justify">
+              <p className="text-lg sm:text-xl leading-relaxed">
+                Hello! I am a creative designer who believes that design is not just about aesthetics, but about <span className="font-medium text-white underline decoration-white/30 decoration-2 underline-offset-4">solving systems and problems</span>. 
+                With a background in <span className="font-semibold text-white bg-white/10 border border-white/10 px-1.5 py-0.5 rounded">{data.major}</span>, I focus on creating a fine balance between high functional clarity and rewarding visual surprises.
+              </p>
+              <p className="leading-relaxed">
+                I love immaculate clean typography, fresh unexpected color palettes, and the micro-details that so often go unnoticed. To me, every project is a playground of possibilities to formulate and tell a unique, deep brand narrative.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div className="p-5 bg-pink-500/10 border border-pink-500/20 rounded-xl flex items-start gap-3.5">
+                  <Sparkles className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-mono uppercase text-pink-300 font-bold tracking-wider">Strategic Marketing Edge</p>
+                    <p className="text-sm font-sans text-white/70 leading-relaxed font-light">
+                      Certified in <span className="text-white font-medium">Digital Marketing at RevoU (2022)</span>. I combine visual aesthetics with user behaviors and conversion analytics to design assets that perform.
+                    </p>
+                  </div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-mono font-medium text-white/50">Full Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-3 py-2 bg-white/5 rounded-lg border border-white/15 font-sans text-sm focus:border-white outline-none text-white" 
-                      value={data.name} 
-                      onChange={(e) => onUpdate({ name: e.target.value })}
-                      placeholder="e.g. Rifki Sandy"
-                    />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-mono font-medium text-white/50">Location / City</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-3 py-2 bg-white/5 rounded-lg border border-white/15 font-sans text-sm focus:border-white outline-none text-white" 
-                      value={data.city} 
-                      onChange={(e) => onUpdate({ city: e.target.value })}
-                      placeholder="e.g. Jakarta, Indonesia"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-mono font-medium text-white/50">Major / Professional Discipline</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-3 py-2 bg-white/5 rounded-lg border border-white/15 font-sans text-sm focus:border-white outline-none text-white" 
-                    value={data.major} 
-                    onChange={(e) => onUpdate({ major: e.target.value })}
-                    placeholder="e.g. Visual Communication Design"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-mono font-medium text-white/50">Creative Inspirations / Hobbies</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-3 py-2 bg-white/5 rounded-lg border border-white/15 font-sans text-sm focus:border-white outline-none text-white" 
-                    value={data.hobbies} 
-                    onChange={(e) => onUpdate({ hobbies: e.target.value })}
-                    placeholder="e.g. hunting for good coffee or exploring art exhibitions"
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-6 text-white/80 font-light text-justify">
-                <p className="text-lg sm:text-xl leading-relaxed">
-                  Hello! I am a creative designer who believes that design is not just about aesthetics, but about <span className="font-medium text-white underline decoration-white/30 decoration-2 underline-offset-4">solving systems and problems</span>. 
-                  With a background in <span className="font-semibold text-white bg-white/10 border border-white/10 px-1.5 py-0.5 rounded">{data.major}</span>, I focus on creating a fine balance between high functional clarity and rewarding visual surprises.
-                </p>
-                <p className="leading-relaxed">
-                  I love immaculate clean typography, fresh unexpected color palettes, and the micro-details that so often go unnoticed. To me, every project is a playground of possibilities to formulate and tell a unique, deep brand narrative.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                  <div className="p-5 bg-pink-500/10 border border-pink-500/20 rounded-xl flex items-start gap-3.5">
-                    <Sparkles className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-mono uppercase text-pink-300 font-bold tracking-wider">Strategic Marketing Edge</p>
-                      <p className="text-sm font-sans text-white/70 leading-relaxed font-light">
-                        Certified in <span className="text-white font-medium">Digital Marketing at RevoU (2022)</span>. I combine visual aesthetics with user behaviors and conversion analytics to design assets that perform.
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="p-5 bg-white/5 border border-white/10 rounded-xl flex items-start gap-3.5">
-                    <Coffee className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                    <div className="space-y-1">
-                      <p className="text-[10px] font-mono uppercase text-zinc-400 font-bold tracking-wider">Inspiration & Fuel</p>
-                      <p className="text-sm font-sans text-white/70 leading-relaxed font-light">
-                        When I'm not carefully matching type layouts or tuning geometric proportions, you can probably find me <span className="text-white font-medium">{data.hobbies}</span>.
-                      </p>
-                    </div>
+                <div className="p-5 bg-white/5 border border-white/10 rounded-xl flex items-start gap-3.5">
+                  <Coffee className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-mono uppercase text-zinc-400 font-bold tracking-wider">Inspiration & Fuel</p>
+                    <p className="text-sm font-sans text-white/70 leading-relaxed font-light">
+                      When I'm not carefully matching type layouts or tuning geometric proportions, you can probably find me <span className="text-white font-medium">{data.hobbies}</span>.
+                    </p>
                   </div>
                 </div>
               </div>
-            )}
+            </div>
 
             {/* Signature Metrics or Highlights */}
             <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, FileText, ArrowUpRight, Github, Linkedin, Dribbble, Instagram, X, Download, CircleUser } from 'lucide-react';
+import { Mail, FileText, ArrowUpRight, X, CircleUser } from 'lucide-react';
 import { PortfolioData } from '../types';
 
 interface FooterProps {
@@ -82,8 +82,7 @@ export default function Footer({ data }: FooterProps) {
         <div className="flex justify-center items-center gap-6 pt-8 border-t border-white/10">
           {[
             { Icon: FileText, href: 'https://bit.ly/portfoliorivki', label: 'PDF Portfolio' },
-            { Icon: Mail, href: 'mailto:rivkidsgn@gmail.com', label: 'Email Address' },
-            { Icon: Instagram, href: '#', label: 'Instagram' }
+            { Icon: Mail, href: 'mailto:rivkidsgn@gmail.com', label: 'Email Address' }
           ].map((social, idx) => (
             <a
               key={idx}
