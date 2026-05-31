@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Award, Zap, TrendingUp, ZoomIn, ChevronLeft, ChevronRight, FileText } from 'lucide-react';
+import { X, ZoomIn, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project, PortfolioData } from '../types';
 
 interface PortfolioProps {
@@ -8,17 +8,15 @@ interface PortfolioProps {
 }
 
 export default function Portfolio({ data }: PortfolioProps) {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
   // Default Projects mapping exactly to the 5 uploaded design mockups in /public/Images
   const initialProjects: Project[] = [
     {
       id: 'proj-1',
       title: 'Ramada Encore Seminyak Bali',
-      category: 'Hospitality Branding',
-      role: 'Graphic Designer',
-      description: 'Spearheaded the development of the hotel’s visual identity by designing high-quality promotional materials, including happy hour flyer panels, cocktail menus, and digital BBQ event designs.',
-      result: 'Maintained full compliance with corporate brand guidelines and produced engaging visual content for Instagram to improve digital audience engagement.',
+      category: 'Triangle Promotion',
+      role: '',
+      description: 'Designed a high-impact three-panel/tri-fold layout design featuring Happy Hour drink specials, buy-one-get-one-free cocktails, and BBQ grilled promotion packages.',
+      result: '',
       color: 'from-[#10b981] to-[#047857]',
       imageSeed: 'ramada-encore',
       image: '/Images/portfolio design 01.jpg',
@@ -26,10 +24,10 @@ export default function Portfolio({ data }: PortfolioProps) {
     {
       id: 'proj-2',
       title: 'Ramada Sunset Road Kuta',
-      category: 'Corporate Rebranding',
-      role: 'Graphic Designer',
-      description: 'Played a key role in the execution of the corporate rebranding initiative, creating promotional room stays, holiday campaign spreads, and Sandekala Restaurant speciality menu layouts.',
-      result: 'Redesigned high-impact signage and print guidelines, aligning the physical property aesthetic with new modern parent corporate templates.',
+      category: 'Hospitality Branding',
+      role: '',
+      description: 'Designed professional promotional staycation displays, speciality food menus for Sandekala Restaurant, and seasonal leisure campaign layouts.',
+      result: '',
       color: 'from-[#f59e0b] to-[#b45309]',
       imageSeed: 'ramada-sunset',
       image: '/Images/portfolio design 02.png',
@@ -37,10 +35,10 @@ export default function Portfolio({ data }: PortfolioProps) {
     {
       id: 'proj-3',
       title: 'Best Western Premier Sunset Road',
-      category: 'Hospitality Campaigns',
-      role: 'Graphic Designer',
-      description: 'Created high-impact holiday seasonal campaigns, Valentine\'s Day romance packages, and Best Western Bali Cluster General Manager greeting materials.',
-      result: 'Provided consistent marketing materials that boosted group bookings and room occupancy across targeted festive quarters.',
+      category: 'Corporate Branding',
+      role: '',
+      description: 'Crafted structured brand materials including Earth Hour campaign designs, Valentine\'s Day romance package displays, and regional General Manager festive cards.',
+      result: '',
       color: 'from-[#ec4899] to-[#be185d]',
       imageSeed: 'bw-premier',
       image: '/Images/portfolio design 03.png',
@@ -49,9 +47,9 @@ export default function Portfolio({ data }: PortfolioProps) {
       id: 'proj-4',
       title: 'The Sintesa Jimbaran',
       category: 'F&B & Seasonal Campaigns',
-      role: 'Graphic Designer',
-      description: 'Developed comprehensive marketing collateral and visual assets for seasonal promotions, Sintesa\'s Getaway stay packages, and Wine of the Month campaigns at The Barber venue.',
-      result: 'Ensured consistent brand identity across both print and digital media, reinforcing the property’s premium positioning and luxury visual standards.',
+      role: '',
+      description: 'Designed premium aesthetic menus for Wine of the Month campaigns at The Barber, festive holiday room packages, and year-end rooftop social promotion designs.',
+      result: '',
       color: 'from-[#6366f1] to-[#4338ca]',
       imageSeed: 'sintesa-jimbaran',
       image: '/Images/portfolio design 04.jpg',
@@ -60,9 +58,9 @@ export default function Portfolio({ data }: PortfolioProps) {
       id: 'proj-5',
       title: 'Sky Garden 61 Legian',
       category: 'Event & Entertainment Design',
-      role: 'Graphic Designer',
-      description: 'Designed high-volume promotional materials, international DJ series event posters, and digital social media maps in a fast-paced environment for one of Bali’s leading entertainment venues.',
-      result: 'Increased weekly foot traffic and social media visibility via bold, high-contrast digital illustrations and typography suites.',
+      role: '',
+      description: 'Designed high-energy, vibrant digital posters for the International DJ Series featuring world-class artists alongside custom neighborhood venue maps.',
+      result: '',
       color: 'from-[#8b5cf6] to-[#6d28d9]',
       imageSeed: 'skygarden',
       image: '/Images/portfolio design 05.png',
@@ -216,143 +214,14 @@ export default function Portfolio({ data }: PortfolioProps) {
                     {project.title}
                   </h3>
 
-                  <p className="text-zinc-400 font-light text-xs leading-relaxed mt-0.5 line-clamp-3">
+                  <p className="text-zinc-400 font-light text-xs leading-relaxed mt-0.5">
                     {project.description}
                   </p>
-
-                  <div className="flex items-center justify-between gap-2 mt-4 pt-3 border-t border-zinc-800/60">
-                    <span className="text-[10px] font-mono text-zinc-500 italic truncate max-w-[120px]">
-                      {project.role}
-                    </span>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedProject(project);
-                      }}
-                      className="cursor-pointer bg-zinc-800 hover:bg-pink-600 px-3 py-1.5 rounded-lg text-[10px] font-mono text-zinc-300 hover:text-white border border-zinc-800 transition-all flex items-center gap-1 shrink-0"
-                    >
-                      <FileText className="w-3.5 h-3.5" />
-                      Metrics
-                    </button>
-                  </div>
                 </div>
               </motion.div>
             );
           })}
         </div>
-
-        {/* Dynamic Detail Modal Case Study Section */}
-        <AnimatePresence>
-          {selectedProject && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-              
-              {/* Overlay background close click */}
-              <div className="absolute inset-0" onClick={() => setSelectedProject(null)} />
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 15 }}
-                transition={{ duration: 0.3 }}
-                className="relative glass w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl backdrop-blur-2xl border border-white/10"
-              >
-                {/* Header visual block with image - clicking zooms in */}
-                <div 
-                  onClick={() => {
-                    const idx = initialProjects.findIndex(p => p.id === selectedProject.id);
-                    if (idx !== -1) setLightboxIndex(idx);
-                  }}
-                  className="relative aspect-16/9 w-full bg-slate-950 overflow-hidden border-b border-white/10 cursor-zoom-in group/img"
-                  title="Click to view full screen"
-                >
-                  <img 
-                    src={selectedProject.image} 
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover opacity-75 group-hover/img:scale-[1.03] group-hover/img:opacity-85 transition-all duration-700"
-                    referrerPolicy="no-referrer"
-                  />
-                  {/* Dark gradient overlay for text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent pointer-events-none" />
-                  
-                  {/* Inline indicator badge */}
-                  <div className="absolute top-6 left-6 cursor-pointer bg-slate-950/70 hover:bg-slate-900/80 text-white px-3 py-1.5 text-[10px] font-mono rounded-full transition-all border border-white/10 flex items-center gap-1.5">
-                    <ZoomIn className="w-3.5 h-3.5 text-pink-400 animate-pulse" />
-                    Expand Design Detail
-                  </div>
-
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedProject(null);
-                    }}
-                    className="absolute top-6 right-6 cursor-pointer bg-slate-950/70 hover:bg-slate-900/80 text-white p-2 rounded-full transition-all border border-white/10 focus:outline-none z-10"
-                    aria-label="Close Case Study"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-
-                  <div className="absolute bottom-6 left-8 right-8 space-y-1.5">
-                    <span className="font-mono text-xs tracking-widest text-pink-400 uppercase font-semibold">
-                      Case Study
-                    </span>
-                    <h3 className="text-2xl sm:text-3xl font-display font-medium text-white drop-shadow-md">
-                      {selectedProject.title} — {selectedProject.category}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Details Narrative contents */}
-                <div className="p-8 space-y-8 max-h-[60vh] overflow-y-auto font-sans bg-slate-900/45">
-                  
-                  {/* Scope Details using active design verbs */}
-                  <div className="space-y-3">
-                    <h4 className="text-xs font-mono font-bold uppercase text-white/55 tracking-wider flex items-center gap-1">
-                      <Zap className="w-3.5 h-3.5 text-pink-400" />
-                      Role & Execution
-                    </h4>
-                    <p className="text-white/85 leading-relaxed font-light text-base">
-                      {selectedProject.description}
-                    </p>
-                  </div>
-
-                  {/* Positive Client Outcomes and Results Section matching guideline instructions */}
-                  <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3.5">
-                    <h4 className="text-xs font-mono font-bold uppercase text-white tracking-wider flex items-center gap-1.5">
-                      <TrendingUp className="w-4 h-4 text-emerald-400" />
-                      Result & Impact Analysis
-                    </h4>
-                    <p className="text-white/80 leading-relaxed font-light text-sm italic">
-                      "{selectedProject.result}"
-                    </p>
-                  </div>
-
-                  {/* Highlights section to add strategic polish */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 rounded-xl border border-white/10 bg-white/5">
-                      <div className="text-xs font-mono text-white/40 uppercase">Process</div>
-                      <div className="font-display font-medium text-white/90 text-sm mt-1">Research-Led Strategy</div>
-                    </div>
-                    <div className="p-4 rounded-xl border border-white/10 bg-white/5">
-                      <div className="text-xs font-mono text-white/40 uppercase">Execution</div>
-                      <div className="font-display font-medium text-white/90 text-sm mt-1">Immaculate Geometric Grid</div>
-                    </div>
-                  </div>
-
-                  {/* Closing buttons */}
-                  <div className="pt-6 border-t border-white/10 flex justify-end">
-                    <button
-                      onClick={() => setSelectedProject(null)}
-                      className={`cursor-pointer px-5 py-2.5 rounded-full font-medium text-xs transition-colors focus:ring-2 focus:ring-offset-2 ${primaryBtnClass}`}
-                    >
-                      Done Reading
-                    </button>
-                  </div>
-
-                </div>
-              </motion.div>
-            </div>
-          )}
-        </AnimatePresence>
 
         {/* Full-fidelity Interactive Lightbox Gallery Overlay */}
         <AnimatePresence>
@@ -433,16 +302,16 @@ export default function Portfolio({ data }: PortfolioProps) {
               <div className="absolute bottom-0 inset-x-0 py-8 px-6 sm:px-12 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 z-10 text-white">
                 <div className="space-y-1">
                   <span className="font-mono text-pink-400 text-xs tracking-widest uppercase font-semibold">
-                    {initialProjects[lightboxIndex].role} &bull; {initialProjects[lightboxIndex].category}
+                    {initialProjects[lightboxIndex].category}
                   </span>
                   <h3 className="text-xl sm:text-2xl font-display font-medium text-white drop-shadow-md">
                     {initialProjects[lightboxIndex].title}
                   </h3>
                 </div>
-                <div className="text-left sm:text-right max-w-md bg-slate-900/30 p-4 rounded-xl border border-white/5 backdrop-blur-sm">
-                  <p className="text-[10px] font-mono text-pink-400 uppercase tracking-widest mb-1 font-bold">Key Performance Outcome</p>
-                  <p className="text-xs sm:text-sm text-zinc-300 font-light italic leading-normal">
-                    "{initialProjects[lightboxIndex].result}"
+                <div className="text-left sm:text-right max-w-md bg-slate-900/35 p-4 rounded-xl border border-white/5 backdrop-blur-sm">
+                  <p className="text-[10px] font-mono text-pink-400 uppercase tracking-widest mb-1 font-bold">Project Details</p>
+                  <p className="text-xs sm:text-sm text-zinc-300 font-light leading-normal">
+                    {initialProjects[lightboxIndex].description}
                   </p>
                 </div>
               </div>
