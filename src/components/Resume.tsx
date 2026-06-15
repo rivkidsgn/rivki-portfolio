@@ -177,7 +177,7 @@ export default function Resume({ data }: ResumeProps) {
               </div>
               <div className="flex items-center gap-2.5">
                 <Globe className="w-4 h-4 text-pink-400 shrink-0" />
-                <a href="https://rivkisandy.netlify.app" target="_blank" rel="noreferrer" className="hover:text-pink-400 transition-colors">rivkisandy.netlify.app</a>
+                <a href="https://rivki-sandy.netlify.app" target="_blank" rel="noreferrer" className="hover:text-pink-400 transition-colors">rivki-sandy.netlify.app</a>
               </div>
             </div>
           </div>
