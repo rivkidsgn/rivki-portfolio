@@ -10,9 +10,9 @@ export default function Services({ data }: ServicesProps) {
   const services: Service[] = [
     {
       id: 'srv-1',
-      title: 'Hospitality Branding',
-      description: 'From high-concept visual identity systems to detailed brand guidelines and elegant physical hotel collateral templates.',
-      details: ['Identity Systems', 'On-Site Hotel Collateral', 'Corporate Brand Guidelines']
+      title: 'Brand Design & Strategy',
+      description: 'From high-concept visual identity systems and premium layouts to comprehensive guidelines and cohesive physical assets.',
+      details: ['Visual Identity Systems', 'Premium Brand Guidelines', 'Corporate Assets']
     },
     {
       id: 'srv-2',

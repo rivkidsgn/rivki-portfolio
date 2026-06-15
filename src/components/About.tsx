@@ -104,7 +104,7 @@ export default function About({ data }: AboutProps) {
               </div>
               <div className="space-y-1 text-left">
                 <div className="text-2xl sm:text-3xl font-display font-medium text-white">7+ Prime</div>
-                <div className="text-xs font-mono text-white/40 uppercase tracking-widest">Hotels & Venues</div>
+                <div className="text-xs font-mono text-white/40 uppercase tracking-widest">Clients & Brands</div>
               </div>
               <div className="space-y-1 text-left">
                 <div className="text-2xl sm:text-3xl font-display font-medium text-white">100%</div>

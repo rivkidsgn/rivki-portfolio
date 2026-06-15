@@ -7,23 +7,24 @@ import { PortfolioData } from './types';
 import Hero from './components/Hero';
 import About from './components/About';
 import Portfolio from './components/Portfolio';
+import Resume from './components/Resume';
 import Services from './components/Services';
 import Footer from './components/Footer';
 
 const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
   name: 'Rivki Sandy',
   city: 'Denpasar, Bali',
-  major: 'Creative Designer',
-  hobbies: 'conceptualizing premium hospitality brands, documenting travel stories, or exploring artisan coffee',
+  major: 'Creative Designer & Digital Marketer',
+  hobbies: 'conceptualizing premium brand identities, documenting visual stories, or exploring raw geometric proportions',
   heroOption: 'B',
   accentColor: 'indigo',
   optionA: {
-    headline: 'Hi, I’m [Your Name]. I turn hospitality concepts into bold visual experiences.',
-    subheadline: 'Creative Designer based in [Your City], specializing in premium branding, promotional campaigns, and digital content creation for 10+ years.'
+    headline: 'Hi, I’m [Your Name]. I turn complex concepts into bold visual experiences.',
+    subheadline: 'Creative Designer & Digital Marketer based in [Your City], specializing in premium branding, promotional campaigns, and digital content creation for 10+ years.'
   },
   optionB: {
-    headline: 'Making hospitality brands look as premium as they feel.',
-    subheadline: 'I\'m [Your Name]. I help hotels, resorts, and entertainment venues thrive through high-impact design and disciplined visuals.'
+    headline: 'Making premium brands look as remarkable as they feel.',
+    subheadline: 'I\'m [Your Name]. I help brands, venues, and growing businesses stand out through high-impact visual design, premium marketing layouts, and disciplined aesthetics.'
   }
 };
 
@@ -104,12 +105,15 @@ export default function App() {
           </button>
 
           {/* Nav Jumps */}
-          <nav className="flex items-center gap-8 text-xs font-mono text-zinc-400 uppercase tracking-widest">
+          <nav className="flex items-center gap-6 sm:gap-8 text-xs font-mono text-zinc-400 uppercase tracking-widest">
             <button onClick={() => scrollToSection('portfolio-section')} className="cursor-pointer hover:text-white transition-colors">
               Projects
             </button>
             <button onClick={() => scrollToSection('about-section')} className="cursor-pointer hover:text-white transition-colors">
               Story
+            </button>
+            <button onClick={() => scrollToSection('cv-section')} className="cursor-pointer hover:text-white transition-colors">
+              CV
             </button>
             <button onClick={() => scrollToSection('services-section')} className="cursor-pointer hover:text-white transition-colors">
               Services
@@ -136,6 +140,9 @@ export default function App() {
 
         {/* ABOUT ME STORY */}
         <About data={data} />
+
+        {/* DETAILED PROFESSIONAL CV */}
+        <Resume data={data} />
 
         {/* SERVICES OFFERED */}
         <Services data={data} />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, FileText, ArrowUpRight, X, CircleUser } from 'lucide-react';
+import { Mail, FileText, ArrowUpRight, X, CircleUser, MessageSquare } from 'lucide-react';
 import { PortfolioData } from '../types';
 
 interface FooterProps {
@@ -69,6 +69,16 @@ export default function Footer({ data }: FooterProps) {
             Email Me
           </a>
 
+          <a
+            href="https://wa.me/6285156461121?text=Hi%20Rivki%2C%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20connect%21"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full font-medium text-sm flex items-center justify-center gap-2 transition-all shadow-md w-full sm:w-auto"
+          >
+            <MessageSquare className="w-4 h-4" />
+            WhatsApp Me
+          </a>
+
           <button
             onClick={() => setShowResume(true)}
             className="cursor-pointer px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-medium text-sm flex items-center justify-center gap-2 transition-colors w-full sm:w-auto shadow-xs"
@@ -78,25 +88,7 @@ export default function Footer({ data }: FooterProps) {
           </button>
         </div>
 
-        {/* Social Icons Strip */}
-        <div className="flex justify-center items-center gap-6 pt-8 border-t border-white/10">
-          {[
-            { Icon: FileText, href: 'https://bit.ly/portfoliorivki', label: 'PDF Portfolio' },
-            { Icon: Mail, href: 'mailto:rivkidsgn@gmail.com', label: 'Email Address' }
-          ].map((social, idx) => (
-            <a
-              key={idx}
-              href={social.href}
-              className="text-white/50 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 text-xs font-mono flex items-center gap-1"
-              aria-label={social.label}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <social.Icon className="w-4 h-4" />
-              <span className="hidden sm:inline-block">{social.label}</span>
-            </a>
-          ))}
-        </div>
+
 
         {/* Dynamic footer imprint and info */}
         <div className="pt-8 text-xs font-mono text-white/40 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-white/10">
@@ -106,7 +98,7 @@ export default function Footer({ data }: FooterProps) {
             <span>Based in Denpasar, Bali</span>
           </div>
           <span className="font-light hover:text-white/60 transition-colors dropdown-trigger">
-            Hospitality Branding specialist
+            Creative Designer & Digital Marketer
           </span>
         </div>
 
@@ -178,7 +170,7 @@ export default function Footer({ data }: FooterProps) {
                     // Profile Statement
                   </h4>
                   <p className="text-white/80 font-sans font-light leading-relaxed text-sm md:text-base text-justify">
-                    Creative Designer with 10+ years of experience in hospitality branding, hotel promotions, and digital content creation. Skilled in designing visual materials for social media, promotional campaigns, print collateral, and brand communication across digital and offline platforms. Experienced working closely with marketing and sales teams to support brand visibility, audience engagement, and promotional activities.
+                    Creative Designer & Digital Marketer with 10+ years of experience in brand design, marketing campaigns, and digital content creation. Skilled in designing visual materials for social media, promotional campaigns, print collateral, and brand communication across digital and offline platforms. Experienced working closely with marketing and sales teams to support brand visibility, audience engagement, and promotional activities.
                   </p>
                 </div>
 
@@ -343,7 +335,7 @@ export default function Footer({ data }: FooterProps) {
                 <div className="pt-6 border-t-2 border-dashed border-white/10 text-center">
                   <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-zinc-400 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
                     <CircleUser className="w-3.5 h-3.5 text-pink-400" />
-                    Verified Creative Designer CV Credentials // Accredited Hospitality History
+                    Verified Creative Designer & Digital Marketer CV Credentials
                   </div>
                 </div>
 

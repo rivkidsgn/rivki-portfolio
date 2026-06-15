@@ -8,7 +8,7 @@ interface PortfolioProps {
 }
 
 export default function Portfolio({ data }: PortfolioProps) {
-  // Default Projects mapping exactly to the 5 uploaded design mockups in /public/Images
+  // Default Projects mapping exactly to the 5 uploaded design mockups in /public/Images, plus the Bling T-Shirt Artwork
   const initialProjects: Project[] = [
     {
       id: 'proj-1',
@@ -64,13 +64,24 @@ export default function Portfolio({ data }: PortfolioProps) {
       color: 'from-[#8b5cf6] to-[#6d28d9]',
       imageSeed: 'skygarden',
       image: '/Images/portfolio design 05.png',
+    },
+    {
+      id: 'proj-6',
+      title: 'Bling T-Shirt Artwork',
+      category: 'Apparel Design',
+      role: '',
+      description: 'Crafted a glamorous bling-style t-shirt print graphic. Merges customized heavy metal metallic-textured text with brilliant faux-diamond reflections and retro glitz details.',
+      result: '',
+      color: 'from-[#f43f5e] to-[#ec4899]',
+      imageSeed: 'bling-tshirt',
+      image: '/Images/bling t-shirt.png',
     }
   ];
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>('All');
 
-  const categories = ['All', 'Hospitality', 'Branding', 'Entertainment'];
+  const categories = ['All', 'Branding', 'Apparel & Merch', 'Entertainment'];
 
   // Keyboard navigation for full detail project lightbox
   useEffect(() => {
@@ -97,17 +108,18 @@ export default function Portfolio({ data }: PortfolioProps) {
       case 'proj-3': return 'aspect-video';
       case 'proj-4': return 'aspect-[4/3]';
       case 'proj-5': return 'aspect-square';
+      case 'proj-6': return 'aspect-[3/4]';
       default: return 'aspect-video';
     }
   };
 
   const filteredProjects = initialProjects.filter(project => {
     if (activeFilter === 'All') return true;
-    if (activeFilter === 'Hospitality') {
+    if (activeFilter === 'Branding') {
       return ['proj-1', 'proj-2', 'proj-3', 'proj-4'].includes(project.id);
     }
-    if (activeFilter === 'Branding') {
-      return ['proj-1', 'proj-2'].includes(project.id);
+    if (activeFilter === 'Apparel & Merch') {
+      return ['proj-6'].includes(project.id);
     }
     if (activeFilter === 'Entertainment') {
       return ['proj-5'].includes(project.id);
