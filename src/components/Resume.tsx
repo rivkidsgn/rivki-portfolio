@@ -141,31 +141,27 @@ export default function Resume({ data }: ResumeProps) {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[10px] uppercase tracking-wider">
-              <Laptop className="w-3.5 h-3.5" />
-              Available for Remote Work
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight text-white">
+            <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight text-white animate-fade-in">
               Professional CV
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base font-light max-w-xl">
-              A comprehensive timeline of over 10 years crafting high-impact designs, blending marketing conversion analytics with visual perfection.
+              A timeline of over 10 years crafting high-impact designs, blending marketing conversion analytics with visual perfection.
             </p>
           </div>
 
-          {/* Quick Contact & Remote Status Card */}
+          {/* Quick Contact & Info Card */}
           <div className="glass p-5 rounded-2xl border border-white/10 md:max-w-xs w-full space-y-3.5 text-xs text-zinc-300">
             <div className="flex items-center justify-between pb-2 border-b border-white/10">
-              <span className="font-mono text-zinc-500 uppercase tracking-wider">Work Status</span>
-              <span className="text-emerald-400 font-medium flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Open to Remote
+              <span className="font-mono text-zinc-500 uppercase tracking-wider">Location Status</span>
+              <span className="text-pink-400 font-medium flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
+                Denpasar, Bali
               </span>
             </div>
             <div className="space-y-2">
               <div className="flex items-center gap-2.5">
                 <MapPin className="w-4 h-4 text-pink-400 shrink-0" />
-                <span>Denpasar, Bali &bull; Worldwide Remote</span>
+                <span>Denpasar, Bali, Indonesia</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-pink-400 shrink-0" />

@@ -10,6 +10,7 @@ import Portfolio from './components/Portfolio';
 import Resume from './components/Resume';
 import Services from './components/Services';
 import Footer from './components/Footer';
+import DigitalMarketingPortfolio from './components/DigitalMarketingPortfolio';
 
 const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
   name: 'Rivki Sandy',
@@ -105,9 +106,12 @@ export default function App() {
           </button>
 
           {/* Nav Jumps */}
-          <nav className="flex items-center gap-6 sm:gap-8 text-xs font-mono text-zinc-400 uppercase tracking-widest">
+          <nav className="flex items-center gap-4 sm:gap-6 text-[10px] sm:text-xs font-mono text-zinc-400 uppercase tracking-widest">
             <button onClick={() => scrollToSection('portfolio-section')} className="cursor-pointer hover:text-white transition-colors">
-              Projects
+              Creative
+            </button>
+            <button onClick={() => scrollToSection('marketing-section')} className="cursor-pointer hover:text-white transition-colors">
+              Marketing
             </button>
             <button onClick={() => scrollToSection('about-section')} className="cursor-pointer hover:text-white transition-colors">
               Story
@@ -137,6 +141,9 @@ export default function App() {
 
         {/* PORTFOLIO GRID */}
         <Portfolio data={data} />
+
+        {/* DIGITAL MARKETING PORTFOLIO */}
+        <DigitalMarketingPortfolio />
 
         {/* ABOUT ME STORY */}
         <About data={data} />
