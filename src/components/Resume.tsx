@@ -5,9 +5,11 @@ import { PortfolioData } from '../types';
 
 interface ResumeProps {
   data: PortfolioData;
+  lang?: 'id' | 'en';
 }
 
-export default function Resume({ data }: ResumeProps) {
+export default function Resume({ data, lang = 'id' }: ResumeProps) {
+  const isID = lang === 'id';
   const [activeTab, setActiveTab] = useState<'experience' | 'skills_education'>('experience');
 
   const experiences = [
@@ -15,7 +17,14 @@ export default function Resume({ data }: ResumeProps) {
       role: 'Graphic Designer',
       company: 'Ramada Encore Seminyak Bali',
       period: 'April 2023 - April 2025',
-      highlights: [
+      highlights: isID ? [
+        'Merancang semua aset promosi digital dan cetak untuk kampanye hotel termasuk konten Instagram, spanduk situs web, visual email, dan kolateral dalam properti untuk memastikan keselarasan brand.',
+        'Bekerja sama dengan tim Pemasaran & Penjualan untuk merencanakan dan mengeksekusi promosi musiman, menerjemahkan tujuan kampanye menjadi konten visual yang memikat di saluran digital dan luring.',
+        'Membuat strategi konten media sosial berkonversi tinggi, memberikan saran tentang format konten, hook visual, dan ritme posting untuk memaksimalkan jangkauan organik.',
+        'Meproduksi dan mengedit konten video promosi untuk distribusi multi-platform, menyesuaikan format dengan perilaku audiens di setiap platform.',
+        'Mengelola dan mengorganisasi perpustakaan aset digital hotel untuk memastikan perputaran cepat dan konsistensi brand yang mutlak di seluruh departemen.',
+        'Mengoordinasikan secara efektif dengan vendor percetakan dan departemen internal untuk memastikan produksi materi pemasaran tepat waktu dan berkualitas tinggi.'
+      ] : [
         'Designed all digital and print promotional assets for hotel campaigns including Instagram content, website banners, email visuals, and in-property collateral ensuring brand alignment.',
         'Partnered with Marketing & Sales teams to plan and execute seasonal promotions, translating campaign objectives into engaging visual content for digital and offline channels.',
         'Created high-converting social media content strategies, advising on content formats, visual hooks, and posting cadence to maximize organic reach.',
@@ -25,10 +34,31 @@ export default function Resume({ data }: ResumeProps) {
       ]
     },
     {
+      role: 'Freelance Graphic Designer & Digital Marketing Upskilling',
+      company: 'Self-Employed & Professional Credentials',
+      period: 'April 2019 - April 2023',
+      highlights: isID ? [
+        'Memberikan layanan desain grafis lepas untuk usaha kecil, mencakup pembuatan materi pemasaran, konten media sosial, materi promosi, dan aset visual untuk meningkatkan brand awareness dan keterlibatan pelanggan.',
+        'Merancang materi pemasaran digital dan cetak termasuk kiriman media sosial, banner, pamflet, brosur, dan kampanye promosi lintas sektor industri.',
+        'Bekerja sama langsung dengan para pemilik usaha untuk melahirkan solusi kreatif yang selaras dengan tujuan pemasaran serta positioning merek.',
+        'Memperluas keahlian dalam pemasaran digital melalui pembelajaran mandiri secara mendalam serta penerapan taktis dalam pembuatan konten yang mematangkan performa konversi.',
+        'Menyelesaikan Sertifikasi Full Stack Digital Marketing dari RevoU (Oktober 2022) yang meliputi asimilasi SEO, SEM, Content Marketing, Social Media Marketing, Google Ads, CRM, Analytics, Landing Page, dan Customer Journey.'
+      ] : [
+        'Delivered freelance graphic design services for small businesses, creating marketing collateral, social media content, promotional materials, and visual assets to support brand awareness and customer engagement.',
+        'Designed digital and print marketing materials including social media posts, banners, flyers, brochures, and promotional campaigns across various industries.',
+        'Collaborated directly with business owners to develop creative solutions aligned with marketing objectives and brand positioning.',
+        'Expanded expertise in digital marketing through self-directed learning and practical implementation across content creation and online promotion.',
+        'Completed Full Stack Digital Marketing Certification from RevoU (October 2022), covering SEO, SEM, Content Marketing, Social Media Marketing, Google Ads, CRM, Marketing Analytics, Landing Page Optimization, and Customer Journey Strategy.'
+      ]
+    },
+    {
       role: 'Graphic Designer',
       company: 'The Sintesa Jimbaran',
       period: 'April 2017 - April 2019',
-      highlights: [
+      highlights: isID ? [
+        'Mengembangkan kampanye visual untuk promosi hotel musiman dan pemasaran F&B dari konsep awal hingga produksi akhir di seluruh platform digital dan cetak.',
+        'Membuat konten media sosial yang selaras dengan nilai-nilai brand untuk mendukung interaksi audiens dan memperkuat reputasi premium properti.'
+      ] : [
         'Developed visual campaigns for seasonal hotel promotions and F&B marketing from concept through final production across digital and print.',
         'Produced brand-aligned social media content supporting audience engagement and the property\'s premium positioning.'
       ]
@@ -37,7 +67,10 @@ export default function Resume({ data }: ResumeProps) {
       role: 'Graphic Designer',
       company: 'Ramada Sunset Road',
       period: '2015 - 2016',
-      highlights: [
+      highlights: isID ? [
+        'Memimpin eksekusi visual untuk inisiatif rebranding korporat, memperbarui identitas brand, materi promosi, dan papan penanda di lokasi dalam tenggat waktu yang ketat.',
+        'Merancang materi promosi kamar dan kampanye F&B melalui saluran digital dan cetak.'
+      ] : [
         'Led visual execution of a corporate rebranding initiative, refreshing brand identity, promotional materials, and on-site signage under tight deadlines.',
         'Designed room promotion and F&B campaign materials across digital and print channels.'
       ]
@@ -46,7 +79,9 @@ export default function Resume({ data }: ResumeProps) {
       role: 'Graphic Designer',
       company: 'Best Western Premier Sunset Road',
       period: '2014 - 2015',
-      highlights: [
+      highlights: isID ? [
+        'Membuat materi pemasaran berdampak tinggi untuk penjualan kamar, acara, dan kampanye musiman termasuk Earth Hour dan inisiatif ucapan selamat hari raya.'
+      ] : [
         'Created high-impact marketing materials for room sales, events, and seasonal campaigns including Earth Hour and seasonal greeting initiatives.'
       ]
     },
@@ -54,7 +89,9 @@ export default function Resume({ data }: ResumeProps) {
       role: 'Graphic Designer',
       company: 'Sky Garden 61 Legian',
       period: '2013 - 2014',
-      highlights: [
+      highlights: isID ? [
+        'Membuat poster acara, brosur, dan konten media sosial dalam jumlah besar untuk salah satu tempat hiburan terkemuka di Bali dalam ritme tenggat waktu yang sangat dinamis.'
+      ] : [
         'Produced high-volume event posters, flyers, and social media content for one of Bali\'s top entertainment venues under fast-paced deadlines.'
       ]
     },
@@ -62,7 +99,9 @@ export default function Resume({ data }: ResumeProps) {
       role: 'Graphic Designer',
       company: 'Media Kreasi Printing (Offset)',
       period: '2011 - 2013',
-      highlights: [
+      highlights: isID ? [
+        'Mengelola produksi prepress, desain tata letak layar cetak, dan kontrol kualitas keseluruhan untuk pencetakan offset komersial.'
+      ] : [
         'Managed prepress production, layout design, and quality control for commercial offset printing.'
       ]
     },
@@ -70,13 +109,25 @@ export default function Resume({ data }: ResumeProps) {
       role: 'Junior Graphic Designer',
       company: 'Crossline Clothing & Merchandise',
       period: '2008 - 2010',
-      highlights: [
+      highlights: isID ? [
+        'Merancang grafis pakaian, konsep merchandise visual, dan materi promosi ritel.'
+      ] : [
         'Designed apparel graphics, merchandise concepts, and retail promotional materials.'
       ]
     }
   ];
 
-  const designSkills = [
+  const designSkills = isID ? [
+    'Branding & Promosi Perhotelan',
+    'Desain Konten Media Sosial',
+    'Dukungan Kampanye Digital',
+    'Desain Kolateral Pemasaran',
+    'Penyuntingan Foto & Video',
+    'Komunikasi Visual',
+    'Produksi Media Cetak',
+    'Konsistensi Brand murni',
+    'Kolaborasi Lintas Fungsi'
+  ] : [
     'Hospitality Branding & Promotion',
     'Social Media Content Design',
     'Digital Campaign Support',
@@ -103,13 +154,36 @@ export default function Resume({ data }: ResumeProps) {
   const designTools = [
     'Adobe Photoshop',
     'Adobe Illustrator',
+    'Adobe InDesign',
     'CorelDRAW',
+    'Figma',
     'Canva',
-    'Capcut',
+    'CapCut',
+    'ChatGPT',
+    'Adobe Firefly',
     'AI Design Tools'
   ];
 
-  const educationList = [
+  const educationList = isID ? [
+    {
+      title: 'Digital Marketing Lengkap (Full-Stack)',
+      institution: 'RevoU',
+      period: 'Agustus - Oktober 2022',
+      details: 'Program industri intensif: Pemasaran Produk, Halaman Arahan (Landing Page), Analitik Pemasaran, Iklan Media Sosial, SEM & SEO, Google Ads, Pemasaran Konten, Media Sosial Organik, dan CRM.'
+    },
+    {
+      title: 'Pondok Modern Darussalam Gontor',
+      institution: 'Pendidikan Menengah',
+      period: '1999 - 2005',
+      details: 'Dasar-dasar kreatif, studi akademis mendalam & kepemimpinan organisasi.'
+    },
+    {
+      title: 'SDN Angkasa XII',
+      institution: 'Pendidikan Dasar',
+      period: '1993 - 1999',
+      details: 'Pendidikan dasar awal dan pembentukan pondasi akademik dasar.'
+    }
+  ] : [
     {
       title: 'Full Stack Digital Marketing',
       institution: 'RevoU',
@@ -142,17 +216,17 @@ export default function Resume({ data }: ResumeProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="space-y-4">
             <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight text-white animate-fade-in">
-              Professional CV
+              {isID ? 'CV Profesional' : 'Professional CV'}
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base font-light max-w-xl">
-              A timeline of over 10 years crafting high-impact designs, blending marketing conversion analytics with visual perfection.
+              {isID ? 'Perjalanan lebih dari 10 tahun memahat desain berdampak tinggi, memadukan analitik konversi pemasaran dengan estetika visual murni.' : 'A timeline of over 10 years crafting high-impact designs, blending marketing conversion analytics with visual perfection.'}
             </p>
           </div>
 
           {/* Quick Contact & Info Card */}
           <div className="glass p-5 rounded-2xl border border-white/10 md:max-w-xs w-full space-y-3.5 text-xs text-zinc-300">
             <div className="flex items-center justify-between pb-2 border-b border-white/10">
-              <span className="font-mono text-zinc-500 uppercase tracking-wider">Location Status</span>
+              <span className="font-mono text-zinc-500 uppercase tracking-wider">{isID ? 'Status Lokasi' : 'Location Status'}</span>
               <span className="text-pink-400 font-medium flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
                 Denpasar, Bali
@@ -189,7 +263,7 @@ export default function Resume({ data }: ResumeProps) {
           >
             <span className="flex items-center gap-2">
               <Briefcase className="w-4 h-4" />
-              Work History
+              {isID ? 'Riwayat Pekerjaan' : 'Work History'}
             </span>
             {activeTab === 'experience' && (
               <motion.div layoutId="activeCVTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-pink-500" />
@@ -203,7 +277,7 @@ export default function Resume({ data }: ResumeProps) {
           >
             <span className="flex items-center gap-2">
               <Wrench className="w-4 h-4" />
-              Skills & Education
+              {isID ? 'Keahlian & Pendidikan' : 'Skills & Education'}
             </span>
             {activeTab === 'skills_education' && (
               <motion.div layoutId="activeCVTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-pink-500" />
@@ -278,7 +352,7 @@ export default function Resume({ data }: ResumeProps) {
                 <div className="glass p-6 rounded-2xl border border-white/5 space-y-4">
                   <h3 className="text-lg font-display font-medium text-white flex items-center gap-2.5">
                     <Flame className="w-5 h-5 text-pink-500" />
-                    Design Skills & Specialties
+                    {isID ? 'Keahlian & Spesialisasi Desain' : 'Design Skills & Specialties'}
                   </h3>
                   <div className="flex flex-wrap gap-2.5">
                     {designSkills.map((skill, sIdx) => (
@@ -293,7 +367,7 @@ export default function Resume({ data }: ResumeProps) {
                 <div className="glass p-6 rounded-2xl border border-white/5 space-y-4">
                   <h3 className="text-lg font-display font-medium text-white flex items-center gap-2.5">
                     <CheckCircle2 className="w-5 h-5 text-pink-500" />
-                    Digital Marketing Literacy
+                    {isID ? 'Literasi Pemasaran Digital' : 'Digital Marketing Literacy'}
                   </h3>
                   <div className="flex flex-wrap gap-2.5">
                     {digitalMarketingLiteracy.map((mSkill, mIdx) => (
@@ -308,7 +382,7 @@ export default function Resume({ data }: ResumeProps) {
                 <div className="glass p-6 rounded-2xl border border-white/5 space-y-4">
                   <h3 className="text-lg font-display font-medium text-white flex items-center gap-2.5">
                     <Wrench className="w-5 h-5 text-pink-500" />
-                    Professional Tools
+                    {isID ? 'Peralatan Profesional' : 'Professional Tools'}
                   </h3>
                   <div className="flex flex-wrap gap-2.5">
                     {designTools.map((tool, tIdx) => (
@@ -325,7 +399,7 @@ export default function Resume({ data }: ResumeProps) {
               <div className="lg:col-span-5 space-y-6">
                 <h3 className="text-xl font-display font-medium text-white flex items-center gap-2.5 mb-6">
                   <GraduationCap className="w-6 h-6 text-pink-400" />
-                  Education & Certifications
+                  {isID ? 'Pendidikan & Sertifikasi' : 'Education & Certifications'}
                 </h3>
 
                 <div className="space-y-6 relative before:absolute before:left-3 before:top-2 before:bottom-2 before:w-[1px] before:bg-white/10">
@@ -361,9 +435,11 @@ export default function Resume({ data }: ResumeProps) {
         {/* Offline PDF & Callout Alert block */}
         <div className="mt-16 p-6 rounded-2xl border border-white/10 bg-white/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
           <div className="space-y-1.5 max-w-xl">
-            <h4 className="font-display font-medium text-white text-base">Looking for a print-ready CV or offline PDF?</h4>
+            <h4 className="font-display font-medium text-white text-base">
+              {isID ? 'Mencari CV siap cetak atau PDF luring?' : 'Looking for a print-ready CV or offline PDF?'}
+            </h4>
             <p className="text-zinc-400 text-xs font-light">
-              You can instantly view my hand-crafted layout design portfolio and detailed printable resume directly online on my Netlify build.
+              {isID ? 'Anda dapat langsung melihat portofolio tata letak buatan tangan saya dan resume terperinci yang siap cetak langsung secara daring pada Netlify saya.' : 'You can instantly view my hand-crafted layout design portfolio and detailed printable resume directly online on my Netlify build.'}
             </p>
           </div>
           <div className="flex gap-4">
@@ -374,7 +450,7 @@ export default function Resume({ data }: ResumeProps) {
               className="cursor-pointer bg-white text-zinc-950 hover:bg-zinc-200 px-5  py-2.5 rounded-full font-medium text-xs font-sans tracking-wide transition-all inline-flex items-center gap-2"
             >
               <FileText className="w-4 h-4" />
-              View PDF Portfolio
+              {isID ? 'Lihat Portofolio PDF' : 'View PDF Portfolio'}
             </a>
           </div>
         </div>

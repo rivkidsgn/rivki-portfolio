@@ -4,10 +4,38 @@ import { PortfolioData, Service } from '../types';
 
 interface ServicesProps {
   data: PortfolioData;
+  lang?: 'id' | 'en';
 }
 
-export default function Services({ data }: ServicesProps) {
-  const services: Service[] = [
+export default function Services({ data, lang = 'id' }: ServicesProps) {
+  const isID = lang === 'id';
+
+  const services: Service[] = isID ? [
+    {
+      id: 'srv-1',
+      title: 'Desain Brand & Strategi',
+      description: 'Dari sistem identitas visual berkonsep tinggi dan tata letak perhotelan premium hingga panduan komprehensif dan aset fisik yang konsisten.',
+      details: ['Sistem Identitas Visual', 'Panduan Brand Premium', 'Aset Pemasaran Korporat']
+    },
+    {
+      id: 'srv-2',
+      title: 'Kampanye Digital',
+      description: 'Desain konten dinamis untuk saluran sosial, peningkatan interaksi aset Instagram, dan dukungan pemasaran digital yang terperinci.',
+      details: ['Tata Letak Instagram', 'Aset Promosi Digital', 'Halaman Arahan Target']
+    },
+    {
+      id: 'srv-3',
+      title: 'Tata Letak Cetak & Prepress',
+      description: 'Persiapan file prepress offset komersial, komposisi matematis presisi, dan tata letak cetak offline untuk brosur dan baliho.',
+      details: ['Penyelarasan Prepress', 'Spesifikasi Offset Percetakan', 'Aset Papan Penanda Khusus']
+    },
+    {
+      id: 'srv-4',
+      title: 'Pembuatan Konten Kreatif',
+      description: 'Penyuntingan video multi-platform artistik, produksi video reels promosi, serta dokumentasi visual yang mendukung tujuan penjualan.',
+      details: ['Penyuntingan Video', 'Dokumentasi Acara', 'Sinergi Lintas Departemen']
+    }
+  ] : [
     {
       id: 'srv-1',
       title: 'Brand Design & Strategy',
@@ -65,12 +93,17 @@ export default function Services({ data }: ServicesProps) {
         
         {/* Header Block */}
         <div className="space-y-4 max-w-xl">
-          <span className="font-mono text-xs tracking-widest text-white/40 uppercase">Capabilities</span>
-          <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight text-white">
-            What I Bring to the Table
+          <span className="font-mono text-xs tracking-widest text-white/40 uppercase">
+            {isID ? 'Kemampuan' : 'Capabilities'}
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight text-white animate-fade-in">
+            {isID ? 'Layanan & Keahlian Utama' : 'What I Bring to the Table'}
           </h2>
           <p className="text-white/70 text-sm sm:text-base font-light leading-relaxed">
-            I help companies grow and tell narratives through clean strategy, strategic thinking, bold colors, and disciplined modern execution.
+            {isID
+              ? 'Saya membantu bisnis berkembang dan menceritakan narasi melalui strategi yang bersih, pemikiran taktis, warna-warna berani, dan eksekusi modern yang disiplin.'
+              : 'I help companies grow and tell narratives through clean strategy, strategic thinking, bold colors, and disciplined modern execution.'
+            }
           </p>
         </div>
 

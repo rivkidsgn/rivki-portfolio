@@ -5,9 +5,11 @@ import { PortfolioData } from '../types';
 
 interface FooterProps {
   data: PortfolioData;
+  lang?: 'id' | 'en';
 }
 
-export default function Footer({ data }: FooterProps) {
+export default function Footer({ data, lang = 'id' }: FooterProps) {
+  const isID = lang === 'id';
   const [showResume, setShowResume] = useState(false);
 
   const mailToUrl = `mailto:rivkidsgn@gmail.com?subject=Exploration for Creative Collaboration&body=Hi Rivki,\n\nI reviewed your designer portfolio and would love to collaborate on a design campaign...`;
@@ -47,15 +49,24 @@ export default function Footer({ data }: FooterProps) {
             className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[11px] font-mono uppercase tracking-wider text-white/60"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Taking Bookings for {currentYear}
+            {isID ? `Menerima Pesanan untuk ${currentYear}` : `Taking Bookings for ${currentYear}`}
           </motion.div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-medium text-white tracking-tight leading-[1.1] drop-shadow-md">
-            Have an exciting idea?<br />Let’s bring it to life together.
-          </h2>
+          {isID ? (
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-medium text-white tracking-tight leading-[1.1] drop-shadow-md">
+              Punya ide menarik?<br />Mari kita wujudkan bersama.
+            </h2>
+          ) : (
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-medium text-white tracking-tight leading-[1.1] drop-shadow-md">
+              Have an exciting idea?<br />Let’s bring it to life together.
+            </h2>
+          )}
           
           <p className="text-white/65 font-light text-sm sm:text-base max-w-lg mx-auto">
-            I’m always open to new collaborations, contract consultations, or just sharing a coffee story over design.
+            {isID 
+              ? 'Saya selalu terbuka untuk kolaborasi baru, konsultasi kontrak, atau sekadar berbagi cerita kopi tentang desain.'
+              : 'I’m always open to new collaborations, contract consultations, or just sharing a coffee story over design.'
+            }
           </p>
         </div>
 
@@ -66,7 +77,7 @@ export default function Footer({ data }: FooterProps) {
             className={`cursor-pointer px-8 py-3.5 rounded-full font-medium text-sm flex items-center gap-2 justify-center transition-all shadow-md w-full sm:w-auto ${primaryBtnClass}`}
           >
             <Mail className="w-4 h-4" />
-            Email Me
+            {isID ? 'Kirim Email' : 'Email Me'}
           </a>
 
           <a
@@ -76,7 +87,7 @@ export default function Footer({ data }: FooterProps) {
             className="cursor-pointer px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full font-medium text-sm flex items-center justify-center gap-2 transition-all shadow-md w-full sm:w-auto"
           >
             <MessageSquare className="w-4 h-4" />
-            WhatsApp Me
+            {isID ? 'Hubungi via WhatsApp' : 'WhatsApp Me'}
           </a>
 
           <button
@@ -84,7 +95,7 @@ export default function Footer({ data }: FooterProps) {
             className="cursor-pointer px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-medium text-sm flex items-center justify-center gap-2 transition-colors w-full sm:w-auto shadow-xs"
           >
             <FileText className="w-4 h-4 text-white/70" />
-            View Resume (PDF)
+            {isID ? 'Lihat Resume (PDF)' : 'View Resume (PDF)'}
           </button>
         </div>
 
@@ -95,10 +106,10 @@ export default function Footer({ data }: FooterProps) {
           <div className="flex items-center gap-1.5 flex-wrap justify-center">
             <span>&copy; {currentYear} {data.name}</span>
             <span>&bull;</span>
-            <span>Based in Denpasar, Bali</span>
+            <span>{isID ? 'Berbasis di Denpasar, Bali' : 'Based in Denpasar, Bali'}</span>
           </div>
           <span className="font-light hover:text-white/60 transition-colors dropdown-trigger">
-            Creative Designer & Digital Marketer
+            {isID ? 'Desainer Grafis Senior & Spesialis Pemasaran Visual' : 'Senior Graphic Designer & Visual Marketing Specialist'}
           </span>
         </div>
 
@@ -124,13 +135,13 @@ export default function Footer({ data }: FooterProps) {
                 <div className="flex items-center gap-2">
                   <FileText className="w-4 h-4 text-white/60" />
                   <span className="font-mono text-xs tracking-wider text-white/80">
-                    RESUME_PREVIEW_RIVKI_SANDY_DESIGN.pdf
+                    {isID ? 'PRATINJAU_RESUME_RIVKI_SANDY_DESAIN.pdf' : 'RESUME_PREVIEW_RIVKI_SANDY_DESIGN.pdf'}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <span className="hidden md:inline font-mono text-[10px] text-zinc-400">
-                    Creative Experience Engine
+                    {isID ? 'Mesin Pengalaman Kreatif' : 'Creative Experience Engine'}
                   </span>
                   <button
                     onClick={() => setShowResume(false)}
@@ -151,7 +162,7 @@ export default function Footer({ data }: FooterProps) {
                       {data.name}
                     </h3>
                     <p className="font-mono text-xs text-pink-400 mt-1 uppercase tracking-widest">
-                      {data.major}
+                      {isID ? 'Desainer Grafis Senior & Spesialis Pemasaran Visual' : data.major}
                     </p>
                   </div>
                   <div className="text-left md:text-right font-mono text-[11px] text-white/50 space-y-1">
@@ -167,10 +178,14 @@ export default function Footer({ data }: FooterProps) {
                 {/* Profile Summary segment */}
                 <div className="space-y-2">
                   <h4 className="text-xs font-mono font-bold text-white uppercase tracking-widest text-pink-400">
-                    // Profile Statement
+                    // {isID ? 'Pernyataan Profil' : 'Profile Statement'}
                   </h4>
                   <p className="text-white/80 font-sans font-light leading-relaxed text-sm md:text-base text-justify">
-                    Creative Designer & Digital Marketer with 10+ years of experience in brand design, marketing campaigns, and digital content creation. Skilled in designing visual materials for social media, promotional campaigns, print collateral, and brand communication across digital and offline platforms. Experienced working closely with marketing and sales teams to support brand visibility, audience engagement, and promotional activities.
+                    {isID ? (
+                      'Desainer Grafis Senior & Spesialis Pemasaran Visual kreatif dengan pengalaman 10+ tahun dalam desain brand, kampanye pemasaran, dan pembuatan konten digital. Ahli merancang materi visual untuk media sosial, kampanye promosi, kolateral media cetak, serta komunikasi merek di seluruh saluran digital & luring. Berpengalaman bekerja sama erat dengan tim pemasaran & penjualan untuk mendukung visibilitas merek, interaksi audiens, dan kegiatan promosi.'
+                    ) : (
+                      'Senior Graphic Designer & Visual Marketing Specialist with 10+ years of experience in brand design, marketing campaigns, and digital content creation. Skilled in designing visual materials for social media, promotional campaigns, print collateral, and brand communication across digital and offline platforms. Experienced working closely with marketing and sales teams to support brand visibility, audience engagement, and promotional activities.'
+                    )}
                   </p>
                 </div>
 
@@ -180,7 +195,7 @@ export default function Footer({ data }: FooterProps) {
                   {/* Left sub-column: Experience */}
                   <div className="space-y-6">
                     <h4 className="text-xs font-mono font-bold text-pink-400 uppercase tracking-widest pb-2 border-b border-white/10">
-                      Work Experience
+                      {isID ? 'Riwayat Pekerjaan' : 'Work Experience'}
                     </h4>
 
                     <div className="space-y-5">
@@ -191,7 +206,10 @@ export default function Footer({ data }: FooterProps) {
                         </div>
                         <p className="text-xs font-mono text-zinc-300">Ramada Encore Seminyak Bali</p>
                         <p className="text-xs text-white/75 leading-relaxed font-light mt-1 text-justify">
-                          Spearheaded visual identity developments, promotional collateral (flyers, banners), and digital assets. Collaborated closely with Marketing and Sales for targeted online rollouts.
+                          {isID 
+                            ? 'Memimpin pengembangan identitas visual, materi promosi properti (pamflet, spanduk), dan aset digital. Bekerja erat dengan tim Pemasaran dan Penjualan.'
+                            : 'Spearheaded visual identity developments, promotional collateral (flyers, banners), and digital assets. Collaborated closely with Marketing and Sales for targeted online rollouts.'
+                          }
                         </p>
                       </div>
 
@@ -202,7 +220,10 @@ export default function Footer({ data }: FooterProps) {
                         </div>
                         <p className="text-xs font-mono text-zinc-300">The Sintesa Jimbaran</p>
                         <p className="text-xs text-white/75 leading-relaxed font-light mt-1 text-justify">
-                          Developed comprehensive collateral for Food & Beverage and seasonal promotions. Ensured solid property guidelines compliance.
+                          {isID 
+                            ? 'Mengembangkan materi lengkap untuk promosi Makanan & Minuman (F&B) serta kampanye musiman. Memastikan kepatuhan ketat terhadap panduan merek.'
+                            : 'Developed comprehensive collateral for Food & Beverage and seasonal promotions. Ensured solid property guidelines compliance.'
+                          }
                         </p>
                       </div>
 
@@ -213,7 +234,10 @@ export default function Footer({ data }: FooterProps) {
                         </div>
                         <p className="text-xs font-mono text-zinc-300">Ramada Sunset Road</p>
                         <p className="text-xs text-white/75 leading-relaxed font-light mt-1 text-justify">
-                          Key player in rebranding activities and designing hotel collateral.
+                          {isID 
+                            ? 'Berperan penting dalam kegiatan rebranding dan perancangan materi promosi hotel.'
+                            : 'Key player in rebranding activities and designing hotel collateral.'
+                          }
                         </p>
                       </div>
 
@@ -224,7 +248,10 @@ export default function Footer({ data }: FooterProps) {
                         </div>
                         <p className="text-xs font-mono text-zinc-300">Best Western Premier Sunset Road</p>
                         <p className="text-xs text-white/75 leading-relaxed font-light mt-1 text-justify">
-                          Designed digital/print materials supporting room sales, events, and seasonal promotional materials.
+                          {isID
+                            ? 'Merancang elemen digital & cetak pendukung penjualan kamar, acara, serta perayaan musiman.'
+                            : 'Designed digital/print materials supporting room sales, events, and seasonal promotional materials.'
+                          }
                         </p>
                       </div>
 
@@ -235,17 +262,29 @@ export default function Footer({ data }: FooterProps) {
                         </div>
                         <p className="text-xs font-mono text-zinc-300">Sky Garden 61 Legian</p>
                         <p className="text-xs text-white/75 leading-relaxed font-light mt-1 text-justify">
-                          Designed high-volume promotional materials and event posters for prime Bali entertainment.
+                          {isID
+                            ? 'Merancang materi promosi volume besar dan poster acara untuk pusat hiburan utama di Bali.'
+                            : 'Designed high-volume promotional materials and event posters for prime Bali entertainment.'
+                          }
                         </p>
                       </div>
 
                       <div className="space-y-1">
                         <div className="flex justify-between items-start text-sm font-semibold text-white">
-                          <span className="max-w-[70%] text-zinc-400">Earlier Work Background</span>
+                          <span className="max-w-[70%] text-zinc-400">{isID ? 'Riwayat Kerja Sebelumnya' : 'Earlier Work Background'}</span>
                         </div>
                         <p className="text-xs text-white/70 leading-relaxed font-light">
-                          <strong>Media Kreasi Printing (2011-2013):</strong> Prepress offset file preparation and print layout composition. <br/>
-                          <strong>Crossline Clothing (2008-2010):</strong> Apparel graphics and merchandise concepts.
+                          {isID ? (
+                            <>
+                              <strong>Media Kreasi Printing (2011-2013):</strong> Persiapan file prepress offset dan komposisi tata letak cetak.<br/>
+                              <strong>Crossline Clothing (2008-2010):</strong> Desain grafis pakaian dan konsep merchandise visual.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Media Kreasi Printing (2011-2013):</strong> Prepress offset file preparation and print layout composition. <br/>
+                              <strong>Crossline Clothing (2008-2010):</strong> Apparel graphics and merchandise concepts.
+                            </>
+                          )}
                         </p>
                       </div>
                     </div>
@@ -255,23 +294,26 @@ export default function Footer({ data }: FooterProps) {
                   <div className="space-y-6">
                     <div className="space-y-4">
                       <h4 className="text-xs font-mono font-bold text-pink-400 uppercase tracking-widest pb-2 border-b border-white/10">
-                        Education & Certification
+                        {isID ? 'Pendidikan & Sertifikasi' : 'Education & Certification'}
                       </h4>
                       <div className="space-y-3">
                         <div className="space-y-1">
                           <div className="flex justify-between items-center text-sm font-semibold text-white">
-                            <span>Full Stack Digital Marketing</span>
+                            <span>{isID ? 'Pemasaran Digital Lengkap' : 'Full Stack Digital Marketing'}</span>
                             <span className="text-[10px] font-mono font-normal text-zinc-400">2022</span>
                           </div>
                           <p className="text-xs font-mono text-zinc-300">RevoU Certification</p>
                           <p className="text-xs text-white/70 font-light mt-1 text-justify">
-                            Intensive training in advertising, SEO, analytics, and content strategies aligned with performance goals.
+                            {isID 
+                              ? 'Pelatihan intensif dalam periklanan, SEO, analitik, dan strategi konten berkonversi tinggi.'
+                              : 'Intensive training in advertising, SEO, analytics, and content strategies aligned with performance goals.'
+                            }
                           </p>
                         </div>
 
                         <div className="space-y-1">
                           <div className="flex justify-between items-center text-sm font-semibold text-white">
-                            <span>Darussalam Boarding School</span>
+                            <span>{isID ? 'Pondok Modern Gontor' : 'Darussalam Boarding School'}</span>
                             <span className="text-[10px] font-mono font-normal text-zinc-400">1999 &mdash; 2005</span>
                           </div>
                         </div>
@@ -287,10 +329,20 @@ export default function Footer({ data }: FooterProps) {
 
                     <div className="space-y-4">
                       <h4 className="text-xs font-mono font-bold text-pink-400 uppercase tracking-widest pb-2 border-b border-white/10">
-                        Core Expertise
+                        {isID ? 'Kompetensi Inti' : 'Core Expertise'}
                       </h4>
                       <div className="flex flex-wrap gap-1.5 pt-1 font-mono text-[9px]">
-                        {[
+                        {(isID ? [
+                          'Branding Perhotelan',
+                          'Desain Media Sosial',
+                          'Kolateral Pemasaran',
+                          'Kampanye Digital',
+                          'Penyuntingan Video/Foto',
+                          'Komunikasi Visual',
+                          'Produksi Cetak / Prepress',
+                          'Konsistensi Brand',
+                          'Sinergi Lintas Departemen'
+                        ] : [
                           'Hospitality Branding',
                           'Social Media Design',
                           'Marketing Collateral',
@@ -300,7 +352,7 @@ export default function Footer({ data }: FooterProps) {
                           'Print Production / Prepress',
                           'Brand Consistency',
                           'Cross-functional Synergy'
-                        ].map((skill) => (
+                        ]).map((skill) => (
                           <span key={skill} className="bg-white/5 text-white/90 border border-white/10 px-2 py-0.5 rounded">
                             {skill}
                           </span>
@@ -310,7 +362,7 @@ export default function Footer({ data }: FooterProps) {
 
                     <div className="space-y-4">
                       <h4 className="text-xs font-mono font-bold text-pink-400 uppercase tracking-widest pb-2 border-b border-white/10">
-                        Design Tools
+                        {isID ? 'Alat Desain' : 'Design Tools'}
                       </h4>
                       <div className="flex flex-wrap gap-1.5 pt-1 font-mono text-[9px]">
                         {[
@@ -335,7 +387,7 @@ export default function Footer({ data }: FooterProps) {
                 <div className="pt-6 border-t-2 border-dashed border-white/10 text-center">
                   <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-zinc-400 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
                     <CircleUser className="w-3.5 h-3.5 text-pink-400" />
-                    Verified Creative Designer & Digital Marketer CV Credentials
+                    {isID ? 'Kredensial CV Senior Graphic Designer & Visual Marketing Specialist Terverifikasi' : 'Verified Senior Graphic Designer & Visual Marketing Specialist CV'}
                   </div>
                 </div>
 
@@ -344,14 +396,14 @@ export default function Footer({ data }: FooterProps) {
               {/* Action bar and Print/Download triggers simulation */}
               <div className="px-6 py-4 bg-slate-900/50 border-t border-white/10 flex justify-between items-center">
                 <span className="text-[11px] font-mono text-white/40">
-                  Document Size: 1.1 MB
+                  {isID ? 'Ukuran Berkas: 1.1 MB' : 'Document Size: 1.1 MB'}
                 </span>
                 <div className="flex items-center gap-2">
                   <button 
                     onClick={() => setShowResume(false)}
                     className="cursor-pointer px-4 py-2 bg-white/5 border border-white/10 hover:bg-white/10 rounded-lg text-xs font-medium text-white transition"
                   >
-                    Close
+                    {isID ? 'Tutup' : 'Close'}
                   </button>
                   <a 
                     href="https://bit.ly/portfoliorivki"
@@ -360,7 +412,7 @@ export default function Footer({ data }: FooterProps) {
                     className={`cursor-pointer px-4 py-2 text-white rounded-lg text-xs font-semibold shadow-sm flex items-center gap-1.5 transition ${primaryBtnClass}`}
                   >
                     <ArrowUpRight className="w-3.5 h-3.5" />
-                    View Live PDF Portfolio
+                    {isID ? 'Lihat PDF Portofolio' : 'View Live PDF Portfolio'}
                   </a>
                 </div>
               </div>

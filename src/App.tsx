@@ -15,22 +15,23 @@ import DigitalMarketingPortfolio from './components/DigitalMarketingPortfolio';
 const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
   name: 'Rivki Sandy',
   city: 'Denpasar, Bali',
-  major: 'Creative Designer & Digital Marketer',
+  major: 'Senior Graphic Designer & Visual Marketing Specialist',
   hobbies: 'conceptualizing premium brand identities, documenting visual stories, or exploring raw geometric proportions',
   heroOption: 'B',
   accentColor: 'indigo',
   optionA: {
-    headline: 'Hi, I’m [Your Name]. I turn complex concepts into bold visual experiences.',
-    subheadline: 'Creative Designer & Digital Marketer based in [Your City], specializing in premium branding, promotional campaigns, and digital content creation for 10+ years.'
+    headline: 'Hi, I’m Rivki Sandy. I turn complex concepts into bold visual experiences.',
+    subheadline: 'Senior Graphic Designer & Visual Marketing Specialist based in Denpasar, Bali, specializing in premium branding, promotional campaigns, and digital content creation for 10+ years.'
   },
   optionB: {
     headline: 'Making premium brands look as remarkable as they feel.',
-    subheadline: 'I\'m [Your Name]. I help brands, venues, and growing businesses stand out through high-impact visual design, premium marketing layouts, and disciplined aesthetics.'
+    subheadline: 'I\'m Rivki Sandy. I help brands, venues, and growing businesses stand out through high-impact visual design, premium marketing layouts, and disciplined aesthetics.'
   }
 };
 
 export default function App() {
   const [data] = useState<PortfolioData>(DEFAULT_PORTFOLIO_DATA);
+  const [lang, setLang] = useState<'id' | 'en'>('id');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Monitor grid scroll position to reveal "Scroll to Top" button
@@ -85,12 +86,12 @@ export default function App() {
 
       {/* Styled sticky glass layout navigation header */}
       <header className="sticky top-0 z-30 glass-nav px-6 sm:px-12 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           
           {/* Logo Brand Title */}
           <button 
             onClick={() => scrollToSection('hero-section')}
-            className="cursor-pointer flex items-center gap-2 group text-left"
+            className="cursor-pointer flex items-center gap-2 group text-left shrink-0"
           >
             <div className={`w-8 h-8 rounded-lg ${activeAccentBg} flex items-center justify-center text-white font-display font-bold text-sm tracking-tight transition-transform group-hover:scale-105 shadow-inner`}>
               {data.name.substring(0, 1).toUpperCase() || 'S'}
@@ -100,32 +101,58 @@ export default function App() {
                 {data.name}
               </span>
               <p className="text-[10px] font-mono text-zinc-400 -mt-0.5 tracking-wider uppercase">
-                Creative Portfolio
+                {lang === 'id' ? 'Portofolio Kreatif' : 'Creative Portfolio'}
               </p>
             </div>
           </button>
 
-          {/* Nav Jumps */}
-          <nav className="flex items-center gap-4 sm:gap-6 text-[10px] sm:text-xs font-mono text-zinc-400 uppercase tracking-widest">
-            <button onClick={() => scrollToSection('portfolio-section')} className="cursor-pointer hover:text-white transition-colors">
-              Creative
-            </button>
-            <button onClick={() => scrollToSection('marketing-section')} className="cursor-pointer hover:text-white transition-colors">
-              Marketing
-            </button>
-            <button onClick={() => scrollToSection('about-section')} className="cursor-pointer hover:text-white transition-colors">
-              Story
-            </button>
-            <button onClick={() => scrollToSection('cv-section')} className="cursor-pointer hover:text-white transition-colors">
-              CV
-            </button>
-            <button onClick={() => scrollToSection('services-section')} className="cursor-pointer hover:text-white transition-colors">
-              Services
-            </button>
-            <button onClick={() => scrollToSection('contact-section')} className="cursor-pointer hover:text-white transition-colors">
-              Connect
-            </button>
-          </nav>
+          {/* Nav Jumps & Language Toggles wrapper */}
+          <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar py-1">
+            <nav className="flex items-center gap-3 sm:gap-5 text-[9px] sm:text-xs font-mono text-zinc-400 uppercase tracking-widest shrink-0">
+              <button onClick={() => scrollToSection('portfolio-section')} className="cursor-pointer hover:text-white transition-colors">
+                {lang === 'id' ? 'Desain' : 'Creative'}
+              </button>
+              <button onClick={() => scrollToSection('marketing-section')} className="cursor-pointer hover:text-white transition-colors">
+                Marketing
+              </button>
+              <button onClick={() => scrollToSection('about-section')} className="cursor-pointer hover:text-white transition-colors">
+                {lang === 'id' ? 'Kisah' : 'Story'}
+              </button>
+              <button onClick={() => scrollToSection('cv-section')} className="cursor-pointer hover:text-white transition-colors">
+                CV
+              </button>
+              <button onClick={() => scrollToSection('services-section')} className="cursor-pointer hover:text-white transition-colors">
+                {lang === 'id' ? 'Layanan' : 'Services'}
+              </button>
+              <button onClick={() => scrollToSection('contact-section')} className="cursor-pointer hover:text-white transition-colors">
+                {lang === 'id' ? 'Hubungi' : 'Connect'}
+              </button>
+            </nav>
+
+            {/* Premium Top Section Language Selector */}
+            <div className="inline-flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full p-1 text-[9px] font-semibold font-mono shrink-0">
+              <button
+                onClick={() => setLang('id')}
+                className={`cursor-pointer px-2 py-0.5 rounded-full transition-all uppercase ${
+                  lang === 'id'
+                    ? 'bg-white text-zinc-950 font-bold'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                ID
+              </button>
+              <button
+                onClick={() => setLang('en')}
+                className={`cursor-pointer px-2 py-0.5 rounded-full transition-all uppercase ${
+                  lang === 'en'
+                    ? 'bg-white text-zinc-950 font-bold'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                EN
+              </button>
+            </div>
+          </div>
 
         </div>
       </header>
@@ -136,26 +163,27 @@ export default function App() {
         {/* HERO */}
         <Hero
           data={data}
+          lang={lang}
           onScrollToPortfolio={() => scrollToSection('portfolio-section')}
         />
 
         {/* PORTFOLIO GRID */}
-        <Portfolio data={data} />
+        <Portfolio data={data} lang={lang} />
 
         {/* DIGITAL MARKETING PORTFOLIO */}
-        <DigitalMarketingPortfolio />
+        <DigitalMarketingPortfolio lang={lang} />
 
         {/* ABOUT ME STORY */}
-        <About data={data} />
+        <About data={data} lang={lang} />
 
         {/* DETAILED PROFESSIONAL CV */}
-        <Resume data={data} />
+        <Resume data={data} lang={lang} />
 
         {/* SERVICES OFFERED */}
-        <Services data={data} />
+        <Services data={data} lang={lang} />
 
         {/* FOOTER & CALL TO ACTION */}
-        <Footer data={data} />
+        <Footer data={data} lang={lang} />
 
       </main>
 
@@ -169,6 +197,32 @@ export default function App() {
           <ArrowUp className="w-4 h-4" />
         </button>
       )}
+
+      {/* Premium Floating Bottom Language Selector */}
+      <div className="fixed bottom-6 right-6 z-40 flex items-center">
+        <div className="inline-flex items-center gap-1 bg-zinc-900/80 backdrop-blur-md border border-white/15 rounded-full p-1 text-[10px] font-bold font-mono shadow-2xl">
+          <button
+            onClick={() => setLang('id')}
+            className={`cursor-pointer px-3 py-1 rounded-full transition-all uppercase ${
+              lang === 'id'
+                ? 'bg-white text-zinc-950 font-extrabold'
+                : 'text-zinc-400 hover:text-white'
+            }`}
+          >
+            ID
+          </button>
+          <button
+            onClick={() => setLang('en')}
+            className={`cursor-pointer px-3 py-1 rounded-full transition-all uppercase ${
+              lang === 'en'
+                ? 'bg-white text-zinc-950 font-extrabold'
+                : 'text-zinc-400 hover:text-white'
+            }`}
+          >
+            EN
+          </button>
+        </div>
+      </div>
 
     </div>
   );

@@ -5,17 +5,22 @@ import { Project, PortfolioData } from '../types';
 
 interface PortfolioProps {
   data: PortfolioData;
+  lang?: 'id' | 'en';
 }
 
-export default function Portfolio({ data }: PortfolioProps) {
+export default function Portfolio({ data, lang = 'id' }: PortfolioProps) {
+  const isID = lang === 'id';
+
   // Default Projects mapping exactly to the 5 uploaded design mockups in /public/Images, plus the Bling T-Shirt Artwork
   const initialProjects: Project[] = [
     {
       id: 'proj-1',
       title: 'Ramada Encore Seminyak Bali',
-      category: 'Triangle Promotion',
+      category: isID ? 'Promosi Segitiga' : 'Triangle Promotion',
       role: '',
-      description: 'Designed a high-impact three-panel/tri-fold layout design featuring Happy Hour drink specials, buy-one-get-one-free cocktails, and BBQ grilled promotion packages.',
+      description: isID
+        ? 'Merancang layout tiga panel (tri-fold) berdampak tinggi yang menampilkan paket minuman spesial Happy Hour, koktail beli satu gratis satu, dan paket promo BBQ grilled.'
+        : 'Designed a high-impact three-panel/tri-fold layout design featuring Happy Hour drink specials, buy-one-get-one-free cocktails, and BBQ grilled promotion packages.',
       result: '',
       color: 'from-[#10b981] to-[#047857]',
       imageSeed: 'ramada-encore',
@@ -24,9 +29,11 @@ export default function Portfolio({ data }: PortfolioProps) {
     {
       id: 'proj-2',
       title: 'Ramada Sunset Road Kuta',
-      category: 'Hospitality Branding',
+      category: isID ? 'Branding Perhotelan' : 'Hospitality Branding',
       role: '',
-      description: 'Designed professional promotional staycation displays, speciality food menus for Sandekala Restaurant, and seasonal leisure campaign layouts.',
+      description: isID
+        ? 'Merancang tampilan staycation promosi profesional, menu makanan spesial untuk Sandekala Restaurant, dan tata letak kampanye liburan musiman.'
+        : 'Designed professional promotional staycation displays, speciality food menus for Sandekala Restaurant, and seasonal leisure campaign layouts.',
       result: '',
       color: 'from-[#f59e0b] to-[#b45309]',
       imageSeed: 'ramada-sunset',
@@ -35,9 +42,11 @@ export default function Portfolio({ data }: PortfolioProps) {
     {
       id: 'proj-3',
       title: 'Best Western Premier Sunset Road',
-      category: 'Corporate Branding',
+      category: isID ? 'Branding Korporat' : 'Corporate Branding',
       role: '',
-      description: 'Crafted structured brand materials including Earth Hour campaign designs, Valentine\'s Day romance package displays, and regional General Manager festive cards.',
+      description: isID
+        ? 'Merancang materi brand terstruktur termasuk desain kampanye Earth Hour, paket romantis Hari Valentine, dan kartu ucapan General Manager regional.'
+        : "Crafted structured brand materials including Earth Hour campaign designs, Valentine's Day romance package displays, and regional General Manager festive cards.",
       result: '',
       color: 'from-[#ec4899] to-[#be185d]',
       imageSeed: 'bw-premier',
@@ -46,9 +55,11 @@ export default function Portfolio({ data }: PortfolioProps) {
     {
       id: 'proj-4',
       title: 'The Sintesa Jimbaran',
-      category: 'F&B & Seasonal Campaigns',
+      category: isID ? 'Menu Musiman & Kampanye F&B' : 'F&B & Seasonal Campaigns',
       role: '',
-      description: 'Designed premium aesthetic menus for Wine of the Month campaigns at The Barber, festive holiday room packages, and year-end rooftop social promotion designs.',
+      description: isID
+        ? 'Merancang menu estetis premium untuk promosi Wine of the Month di The Barber, paket kamar liburan meriah, dan desain promosi malam tahun baru di rooftop.'
+        : 'Designed premium aesthetic menus for Wine of the Month campaigns at The Barber, festive holiday room packages, and year-end rooftop social promotion designs.',
       result: '',
       color: 'from-[#6366f1] to-[#4338ca]',
       imageSeed: 'sintesa-jimbaran',
@@ -57,9 +68,11 @@ export default function Portfolio({ data }: PortfolioProps) {
     {
       id: 'proj-5',
       title: 'Sky Garden 61 Legian',
-      category: 'Event & Entertainment Design',
+      category: isID ? 'Desain Acara & Hiburan' : 'Event & Entertainment Design',
       role: '',
-      description: 'Designed high-energy, vibrant digital posters for the International DJ Series featuring world-class artists alongside custom neighborhood venue maps.',
+      description: isID
+        ? 'Merancang poster digital yang dimanis dan enerjik untuk International DJ Series yang menampilkan artis kelas dunia beserta peta lokasi acara khusus.'
+        : 'Designed high-energy, vibrant digital posters for the International DJ Series featuring world-class artists alongside custom neighborhood venue maps.',
       result: '',
       color: 'from-[#8b5cf6] to-[#6d28d9]',
       imageSeed: 'skygarden',
@@ -68,9 +81,11 @@ export default function Portfolio({ data }: PortfolioProps) {
     {
       id: 'proj-6',
       title: 'Bling T-Shirt Artwork',
-      category: 'Apparel Design',
+      category: isID ? 'Desain Pakaian' : 'Apparel Design',
       role: '',
-      description: 'Crafted a glamorous bling-style t-shirt print graphic. Merges customized heavy metal metallic-textured text with brilliant faux-diamond reflections and retro glitz details.',
+      description: isID
+        ? 'Merancang desain grafis t-shirt bergaya bling mewah yang menggabungkan teks bertekstur logam berat dengan pantulan berlian imitasi berkilau dan nuansa retro.'
+        : 'Crafted a glamorous bling-style t-shirt print graphic. Merges customized heavy metal metallic-textured text with brilliant faux-diamond reflections and retro glitz details.',
       result: '',
       color: 'from-[#f43f5e] to-[#ec4899]',
       imageSeed: 'bling-tshirt',
@@ -79,9 +94,16 @@ export default function Portfolio({ data }: PortfolioProps) {
   ];
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [activeFilter, setActiveFilter] = useState<string>('All');
+  const [activeFilter, setActiveFilter] = useState<string>(isID ? 'Semua' : 'All');
 
-  const categories = ['All', 'Branding', 'Apparel & Merch', 'Entertainment'];
+  // Sync active filter language changes
+  useEffect(() => {
+    setActiveFilter(isID ? 'Semua' : 'All');
+  }, [lang]);
+
+  const categories = isID 
+    ? ['Semua', 'Branding', 'Pakaian & Merchandise', 'Hiburan']
+    : ['All', 'Branding', 'Apparel & Merch', 'Entertainment'];
 
   // Keyboard navigation for full detail project lightbox
   useEffect(() => {
@@ -114,14 +136,14 @@ export default function Portfolio({ data }: PortfolioProps) {
   };
 
   const filteredProjects = initialProjects.filter(project => {
-    if (activeFilter === 'All') return true;
+    if (activeFilter === 'All' || activeFilter === 'Semua') return true;
     if (activeFilter === 'Branding') {
       return ['proj-1', 'proj-2', 'proj-3', 'proj-4'].includes(project.id);
     }
-    if (activeFilter === 'Apparel & Merch') {
+    if (activeFilter === 'Apparel & Merch' || activeFilter === 'Pakaian & Merchandise') {
       return ['proj-6'].includes(project.id);
     }
-    if (activeFilter === 'Entertainment') {
+    if (activeFilter === 'Entertainment' || activeFilter === 'Hiburan') {
       return ['proj-5'].includes(project.id);
     }
     return true;
@@ -150,13 +172,15 @@ export default function Portfolio({ data }: PortfolioProps) {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
           <div className="space-y-3">
-            <span className="font-mono text-xs tracking-widest text-white/40 uppercase">Selected Works</span>
+            <span className="font-mono text-xs tracking-widest text-white/40 uppercase">
+              {isID ? 'Karya Pilihan' : 'Selected Works'}
+            </span>
             <h2 className="text-3xl sm:text-5xl font-display font-medium tracking-tight text-white leading-none">
-              Case Studies
+              {isID ? 'Studi Kasus' : 'Case Studies'}
             </h2>
           </div>
           <p className="text-sm font-mono text-white/55 font-light max-w-sm md:text-right">
-            Click any card design to view to full details instantly.
+            {isID ? 'Klik kartu desain apa saja untuk melihat detail lengkap secara langsung.' : 'Click any card design to view to full details instantly.'}
           </p>
         </div>
 
@@ -206,7 +230,7 @@ export default function Portfolio({ data }: PortfolioProps) {
                     }}
                   />
                   {/* Indicator Badge on hover */}
-                  <div className="absolute top-3 right-3 bg-slate-900/80 border border-white/10 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" title="Zoom in detail">
+                  <div className="absolute top-3 right-3 bg-slate-900/80 border border-white/10 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" title={isID ? 'Perbesar detal' : 'Zoom in detail'}>
                     <ZoomIn className="w-3.5 h-3.5 text-pink-400" />
                   </div>
                 </div>
@@ -256,12 +280,12 @@ export default function Portfolio({ data }: PortfolioProps) {
                 
                 <div className="flex items-center gap-4">
                   <span className="hidden md:inline font-mono text-[10px] text-zinc-500 tracking-wider">
-                    ARROW KEYS &larr; &rarr; NAVIGATE // ESC CLOSE
+                    {isID ? 'TOMBOL PANAH ← → NAVIGASI // ESC KELUAR' : 'ARROW KEYS ← → NAVIGATE // ESC CLOSE'}
                   </span>
                   <button
                     onClick={() => setLightboxIndex(null)}
                     className="cursor-pointer bg-slate-900/60 hover:bg-slate-900/80 active:bg-slate-950 text-white p-2.5 rounded-full border border-white/10 transition-all flex items-center justify-center shadow-lg"
-                    title="Close (Esc)"
+                    title={isID ? 'Tutup (Esc)' : 'Close (Esc)'}
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -321,7 +345,9 @@ export default function Portfolio({ data }: PortfolioProps) {
                   </h3>
                 </div>
                 <div className="text-left sm:text-right max-w-md bg-slate-900/35 p-4 rounded-xl border border-white/5 backdrop-blur-sm">
-                  <p className="text-[10px] font-mono text-pink-400 uppercase tracking-widest mb-1 font-bold">Project Details</p>
+                  <p className="text-[10px] font-mono text-pink-400 uppercase tracking-widest mb-1 font-bold">
+                    {isID ? 'Detail Proyek' : 'Project Details'}
+                  </p>
                   <p className="text-xs sm:text-sm text-zinc-300 font-light leading-normal">
                     {initialProjects[lightboxIndex].description}
                   </p>

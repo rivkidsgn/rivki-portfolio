@@ -5,9 +5,12 @@ import { PortfolioData } from '../types';
 interface HeroProps {
   data: PortfolioData;
   onScrollToPortfolio: () => void;
+  lang?: 'id' | 'en';
 }
 
-export default function Hero({ data, onScrollToPortfolio }: HeroProps) {
+export default function Hero({ data, onScrollToPortfolio, lang = 'id' }: HeroProps) {
+  const isID = lang === 'id';
+
   const activeColorClass = {
     indigo: 'text-indigo-300 bg-white/5 border-indigo-500/30 hover:bg-white/10',
     amber: 'text-amber-300 bg-white/5 border-amber-500/30 hover:bg-white/10',
@@ -25,16 +28,20 @@ export default function Hero({ data, onScrollToPortfolio }: HeroProps) {
   }[data.accentColor];
 
   // Option B is mandatory and hardcoded now as requested ("tampilkan hanya option B")
-  const rawHeadlineB = data.optionB.headline.replace('[Your Name]', data.name);
-  const rawSubheadlineB = data.optionB.subheadline.replace('[Your Name]', data.name);
+  const defaultHeadlineID = 'Membuat brand premium terlihat semenarik citra aslinya.';
+  const defaultSubheadlineID = `Saya ${data.name}. Saya membantu brand, venue, dan bisnis berkembang untuk tampil menonjol lewat desain visual berdampak tinggi, layout pemasaran premium, dan estetika yang disiplin.`;
+
+  const rawHeadlineB = isID ? defaultHeadlineID : data.optionB.headline.replace('[Your Name]', data.name);
+  const rawSubheadlineB = isID ? defaultSubheadlineID : data.optionB.subheadline.replace('[Your Name]', data.name);
 
   const formatHeadline = (text: string) => {
-    if (text.includes('bold')) {
-      const parts = text.split('bold');
+    // Elegant highlight for premium / remarkable words
+    if (text.includes('premium')) {
+      const parts = text.split('premium');
       return (
         <>
           {parts[0]}
-          <span className="text-pink-400 font-extrabold drop-shadow-[0_0_15px_rgba(244,114,182,0.3)]">bold</span>
+          <span className="text-pink-400 font-medium drop-shadow-[0_0_15px_rgba(244,114,182,0.2)]">premium</span>
           {parts[1]}
         </>
       );
@@ -64,7 +71,7 @@ export default function Hero({ data, onScrollToPortfolio }: HeroProps) {
           className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-white/10 text-xs font-mono tracking-wider uppercase mb-8 backdrop-blur-md bg-white/5 transition-all"
         >
           <span className={`w-2 h-2 rounded-full ${dotColorClass} animate-pulse`} />
-          <span className="text-zinc-300">Available for visual stories</span>
+          <span className="text-zinc-300">{isID ? 'Tersedia untuk proyek visual' : 'Available for visual stories'}</span>
           <span className="text-zinc-600">|</span>
           <span className="text-zinc-200 font-medium">{data.city}</span>
         </motion.div>
@@ -90,7 +97,7 @@ export default function Hero({ data, onScrollToPortfolio }: HeroProps) {
             onClick={onScrollToPortfolio}
             className={`cursor-pointer px-6 py-3.5 rounded-full font-medium text-sm flex items-center gap-2 transition-all duration-300 border border-white/15 shadow-md ${activeColorClass}`}
           >
-            Explore Projects
+            {isID ? 'Eksplorasi Proyek' : 'Explore Projects'}
             <ArrowDown className="w-4 h-4 animate-bounce" />
           </button>
         </motion.div>
@@ -99,7 +106,9 @@ export default function Hero({ data, onScrollToPortfolio }: HeroProps) {
       {/* Floating abstract decorative shape representing premium Swiss design */}
       <div className="absolute right-12 bottom-12 hidden lg:flex flex-col items-end gap-2 text-right pointer-events-none">
         <div className="w-16 h-[2px] bg-white/10" />
-        <span className="font-mono text-[10px] tracking-widest text-white/30 uppercase">Swiss Precision Grid System v1.2</span>
+        <span className="font-mono text-[10px] tracking-widest text-white/30 uppercase">
+          {isID ? 'Sistem Grid Presisi Swiss v1.2' : 'Swiss Precision Grid System v1.2'}
+        </span>
       </div>
     </section>
   );
