@@ -31,7 +31,7 @@ const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
 
 export default function App() {
   const [data] = useState<PortfolioData>(DEFAULT_PORTFOLIO_DATA);
-  const [lang, setLang] = useState<'id' | 'en'>('id');
+  const [lang, setLang] = useState<'id' | 'en'>('en');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Monitor grid scroll position to reveal "Scroll to Top" button
@@ -132,16 +132,6 @@ export default function App() {
             {/* Premium Top Section Language Selector */}
             <div className="inline-flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full p-1 text-[9px] font-semibold font-mono shrink-0">
               <button
-                onClick={() => setLang('id')}
-                className={`cursor-pointer px-2 py-0.5 rounded-full transition-all uppercase ${
-                  lang === 'id'
-                    ? 'bg-white text-zinc-950 font-bold'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                ID
-              </button>
-              <button
                 onClick={() => setLang('en')}
                 className={`cursor-pointer px-2 py-0.5 rounded-full transition-all uppercase ${
                   lang === 'en'
@@ -150,6 +140,16 @@ export default function App() {
                 }`}
               >
                 EN
+              </button>
+              <button
+                onClick={() => setLang('id')}
+                className={`cursor-pointer px-2 py-0.5 rounded-full transition-all uppercase ${
+                  lang === 'id'
+                    ? 'bg-white text-zinc-950 font-bold'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                ID
               </button>
             </div>
           </div>
