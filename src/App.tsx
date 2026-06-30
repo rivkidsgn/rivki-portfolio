@@ -14,13 +14,13 @@ import DigitalMarketingPortfolio from './components/DigitalMarketingPortfolio';
 const DEFAULT_PORTFOLIO_DATA: PortfolioData = {
   name: 'Rivki Sandy',
   city: 'Denpasar, Bali',
-  major: 'Senior Graphic Designer & Visual Marketing Specialist',
+  major: 'Creative Designer | Graphic Designer',
   hobbies: 'conceptualizing premium brand identities, documenting visual stories, or exploring raw geometric proportions',
   heroOption: 'B',
   accentColor: 'indigo',
   optionA: {
     headline: 'Hi, I’m Rivki Sandy. I turn complex concepts into bold visual experiences.',
-    subheadline: 'Senior Graphic Designer & Visual Marketing Specialist based in Denpasar, Bali, specializing in premium branding, promotional campaigns, and digital content creation for 10+ years.'
+    subheadline: 'Creative Designer | Graphic Designer based in Denpasar, Bali, specializing in premium branding, promotional campaigns, and digital content creation for 10+ years.'
   },
   optionB: {
     headline: 'Making premium brands look as remarkable as they feel.',

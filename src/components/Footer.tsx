@@ -109,7 +109,7 @@ export default function Footer({ data, lang = 'id' }: FooterProps) {
             <span>{isID ? 'Berbasis di Denpasar, Bali' : 'Based in Denpasar, Bali'}</span>
           </div>
           <span className="font-light hover:text-white/60 transition-colors dropdown-trigger">
-            {isID ? 'Desainer Grafis Senior & Spesialis Pemasaran Visual' : 'Senior Graphic Designer & Visual Marketing Specialist'}
+            {isID ? 'Desainer Kreatif | Desainer Grafis' : 'Creative Designer | Graphic Designer'}
           </span>
         </div>
 
@@ -162,7 +162,7 @@ export default function Footer({ data, lang = 'id' }: FooterProps) {
                       {data.name}
                     </h3>
                     <p className="font-mono text-xs text-pink-400 mt-1 uppercase tracking-widest">
-                      {isID ? 'Desainer Grafis Senior & Spesialis Pemasaran Visual' : data.major}
+                      {isID ? 'Desainer Kreatif | Desainer Grafis' : data.major}
                     </p>
                   </div>
                   <div className="text-left md:text-right font-mono text-[11px] text-white/50 space-y-1">
@@ -182,9 +182,9 @@ export default function Footer({ data, lang = 'id' }: FooterProps) {
                   </h4>
                   <p className="text-white/80 font-sans font-light leading-relaxed text-sm md:text-base text-justify">
                     {isID ? (
-                      'Desainer Grafis Senior & Spesialis Pemasaran Visual kreatif dengan pengalaman 10+ tahun dalam desain brand, kampanye pemasaran, dan pembuatan konten digital. Ahli merancang materi visual untuk media sosial, kampanye promosi, kolateral media cetak, serta komunikasi merek di seluruh saluran digital & luring. Berpengalaman bekerja sama erat dengan tim pemasaran & penjualan untuk mendukung visibilitas merek, interaksi audiens, dan kegiatan promosi.'
+                      'Desainer Kreatif & Desainer Grafis kreatif dengan pengalaman 10+ tahun dalam desain brand, kampanye pemasaran, dan pembuatan konten digital. Ahli merancang materi visual untuk media sosial, kampanye promosi, kolateral media cetak, serta komunikasi merek di seluruh saluran digital & luring. Berpengalaman bekerja sama erat dengan tim pemasaran & penjualan untuk mendukung visibilitas merek, interaksi audiens, dan kegiatan promosi.'
                     ) : (
-                      'Senior Graphic Designer & Visual Marketing Specialist with 10+ years of experience in brand design, marketing campaigns, and digital content creation. Skilled in designing visual materials for social media, promotional campaigns, print collateral, and brand communication across digital and offline platforms. Experienced working closely with marketing and sales teams to support brand visibility, audience engagement, and promotional activities.'
+                      'Creative Designer & Graphic Designer with 10+ years of experience in brand design, marketing campaigns, and digital content creation. Skilled in designing visual materials for social media, promotional campaigns, print collateral, and brand communication across digital and offline platforms. Experienced working closely with marketing and sales teams to support brand visibility, audience engagement, and promotional activities.'
                     )}
                   </p>
                 </div>
@@ -386,8 +386,8 @@ export default function Footer({ data, lang = 'id' }: FooterProps) {
                 {/* Disclaimer / Mock Print advice */}
                 <div className="pt-6 border-t-2 border-dashed border-white/10 text-center">
                   <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-zinc-400 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
-                    <CircleUser className="w-3.5 h-3.5 text-pink-400" />
-                    {isID ? 'Kredensial CV Senior Graphic Designer & Visual Marketing Specialist Terverifikasi' : 'Verified Senior Graphic Designer & Visual Marketing Specialist CV'}
+                     <CircleUser className="w-3.5 h-3.5 text-pink-400" />
+                    {isID ? 'Kredensial CV Creative Designer | Graphic Designer Terverifikasi' : 'Verified Creative Designer | Graphic Designer CV'}
                   </div>
                 </div>
 
