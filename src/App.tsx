@@ -7,7 +7,6 @@ import { PortfolioData } from './types';
 import Hero from './components/Hero';
 import About from './components/About';
 import Portfolio from './components/Portfolio';
-import Resume from './components/Resume';
 import Services from './components/Services';
 import Footer from './components/Footer';
 import DigitalMarketingPortfolio from './components/DigitalMarketingPortfolio';
@@ -118,9 +117,6 @@ export default function App() {
               <button onClick={() => scrollToSection('about-section')} className="cursor-pointer hover:text-white transition-colors">
                 {lang === 'id' ? 'Kisah' : 'Story'}
               </button>
-              <button onClick={() => scrollToSection('cv-section')} className="cursor-pointer hover:text-white transition-colors">
-                CV
-              </button>
               <button onClick={() => scrollToSection('services-section')} className="cursor-pointer hover:text-white transition-colors">
                 {lang === 'id' ? 'Layanan' : 'Services'}
               </button>
@@ -175,9 +171,6 @@ export default function App() {
 
         {/* ABOUT ME STORY */}
         <About data={data} lang={lang} />
-
-        {/* DETAILED PROFESSIONAL CV */}
-        <Resume data={data} lang={lang} />
 
         {/* SERVICES OFFERED */}
         <Services data={data} lang={lang} />
